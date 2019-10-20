@@ -2,7 +2,6 @@ import matplotlib.pyplot as plt
 from networkx import nx
 import numpy as np
 import scipy.linalg
-import matplotlib.pyplot as plt
 
 def getNeighbour(state):
   neighbour = np.copy(state)
