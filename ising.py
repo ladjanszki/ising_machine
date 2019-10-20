@@ -3,7 +3,7 @@ from networkx import nx
 import numpy as np
 import scipy.linalg
 
-def getNeighbour(state):
+def randomNeighbour(state):
   neighbour = np.copy(state)
   length = neighbour.shape[0]
   index = np.random.randint(length)
@@ -17,8 +17,8 @@ def accProb(oldE, newE, T):
     return np.exp(- (newE - oldE) / T)
 
 
-problemSize = 50
-maxSteps = 500
+problemSize = 20
+maxSteps = 2000
 
 energy = np.empty(maxSteps)
 
@@ -32,8 +32,13 @@ initState = 2 * np.random.randint(2, size=problemSize) - np.ones(problemSize, dt
 
 # Generating ANTIFERROMAGNETIC  adjacency matrix
 J = scipy.linalg.toeplitz([0, -1] + [0] * (problemSize - 2))
-#print(J)
 
+# Adjacency matrix for 1D Antiferromagnetic RING
+# Adding the ring connections
+J[0][problemSize - 1] = -1
+J[problemSize - 1][0] = -1
+
+#print(J)
 
 # Generating the solution vector
 solution = np.array([2*((i+1) % 2) - 1 for i in range(problemSize)])
@@ -47,7 +52,7 @@ for i in range(maxSteps):
 
   print("step: ",i)
 
-  newState = getNeighbour(oldState)
+  newState = randomNeighbour(oldState)
   #print(newState)
   #print(oldState)
 
