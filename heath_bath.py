@@ -43,14 +43,15 @@ class HeathBath:
         pass
     
 
-    def simulate(self):
+    def simulate(self, T, nSteps):
         '''
-        TODO: Think of better architectire whats in class scope and what is in function scope
+        A function to simulate a spin system for nSteps steps on T temperature
+        It returns the energy and magnetization history
+        '''
 
-        '''
         # Arrays for result
-        #energy = np.empty(maxSteps)
-        #magnetization = np.empty(maxSteps)
+        energy = np.empty(nSteps)
+        magnetization = np.empty(nSteps)
          
         # Random initial state
         #np.random.seed(42)
@@ -83,7 +84,7 @@ class HeathBath:
           
             #Save energy (per spin)
             # TODO: Normalization?
-            self.energy[i] = oldE #/ problemSize
+            energy[i] = oldE #/ problemSize
             
             #Save magnetization (per spin)
             # TODO: Normalization?
