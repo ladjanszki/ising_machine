@@ -23,7 +23,7 @@ J = antiferromagneticRing(nSpin)
 bath = HeathBath(nSteps, nSpin)
 
 # TODO: Setting this would be better in the constructor
-bath.adjacency = J
+#bath.adjacency = J
 
 energy, magnetization = bath.simulate()
 
@@ -32,6 +32,7 @@ ax = plt.subplot(111)
 ax.plot(energy, label='Energy per spin')
 #ax.plot(magnetization, label='Average magnetization')
 
+# Debud code for antiferromagnetic solution
 # Generating and plotting the solution vector
 solution = np.array([2*((i+1) % 2) - 1 for i in range(nSpin)])
 solE = - solution @ J @ solution
